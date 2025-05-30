@@ -18,6 +18,7 @@ export default function AuthMiddleware({
   const stateUser = useUser();
   const navigate = useNavigate();
   const storageHelper = new StorageHelper(localStorage);
+
   useEffect(() => {
     if (stateUser.getUser()?.data) {
       setLoading(false);
@@ -35,20 +36,24 @@ export default function AuthMiddleware({
     setLoading(false);
     navigate("/auth/login");
   }, []);
-  useEffect(() => {
+
+  useEffect(() => { //runs when userData.data changes, ex: when user is fetched
     if (userData.data) {
       stateUser.setUser(userData.data);
       setLoading(false);
     }
   }, [userData.data]);
+
   useEffect(() => {
     if (userData.error) {
       setLoading(false);
       navigate("/auth/login");
     }
   }, [userData.error]);
+
   if (loading) {
     return <Loading />;
   }
+
   return children;
 }

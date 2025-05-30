@@ -27,8 +27,7 @@ function Profile() {
   const emailRef = useRef<HTMLInputElement>(null);
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const { fetchData: fetchUpdate, ...updateData } =
-    useFetchData<z.infer<typeof UserModel>>();
+  const { fetchData: fetchUpdate, ...updateData } = useFetchData<z.infer<typeof UserModel>>();
   const stateUser = useUser();
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
