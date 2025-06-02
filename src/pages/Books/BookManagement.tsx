@@ -77,7 +77,9 @@ const BooksManagementPage: React.FC = () => {
 
   useEffect(() => {
     if (setFecthBooksAPI.error) {
-      toast.error(`Failed to fetch books: ${setFecthBooksAPI.errorResponse || 'Unknown error'}`);
+      const apiErrorMessage = setFecthBooksAPI.data?.errorMessage;
+      const generalMessage = setFecthBooksAPI.errorResponse?.message;
+      toast.error(`Failed to fetch books: ${apiErrorMessage || generalMessage || 'Unknown error'}`);
       setIsLoadingBooks(false);
     }
   }, [setFecthBooksAPI.error, setFecthBooksAPI.errorResponse]);
